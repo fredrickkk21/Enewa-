@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Precious Enewa 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#f6d88f;
+  --deep:#090611;
+  --rose:#ff7aa8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#1c1329,#07030f);
+  color:white;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+/* INTRO CINEMA */
+#intro{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  text-align:center;
+  letter-spacing:2px;
+  z-index:999;
+  animation:fadeIntro 5s forwards;
+}
+
+@keyframes fadeIntro{
+  0%{opacity:1}
+  85%{opacity:1}
+  100%{opacity:0;visibility:hidden}
+}
+
+/* PARALLAX STARS */
+.layer{
+  position:fixed;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+
+.star{
+  position:absolute;
+  background:white;
+  border-radius:50%;
+  opacity:.8;
+  animation:twinkle 4s infinite;
+}
+
+@keyframes twinkle{
+  50%{opacity:.3}
+}
+
+/* MAIN CONTENT */
+.section{
+  padding:100px 20px;
+  text-align:center;
+  max-width:900px;
+  margin:auto;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,5vw,3.5rem);
+  color:var(--gold);
+  margin-bottom:20px;
+}
+
+p{
+  font-size:1.2rem;
+  line-height:1.9;
+}
+
+/* TYPE LETTER */
+#typed{
+  min-height:150px;
+  margin-top:20px;
+}
+
+/* GALLERY */
+.gallery{
+  margin-top:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
+}
+
+.gallery img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,.7);
+  transition:.5s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* BUTTON */
+button{
+  margin-top:40px;
+  padding:16px 40px;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(45deg,var(--gold),#fff);
+  font-weight:600;
+  cursor:pointer;
+  font-size:1.1rem;
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.08);
+}
+
+/* PROPOSAL SPOTLIGHT */
+#proposal{
+  display:none;
+  margin-top:60px;
+  animation:fadeIn 2s forwards;
+}
+
+#ring{
+  font-size:100px;
+  animation:ringGlow 3s ease-in-out infinite;
+}
+
+@keyframes ringGlow{
+  0%,100%{text-shadow:0 0 10px gold}
+  50%{text-shadow:0 0 30px gold}
+}
+
+#finalText{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  color:var(--gold);
+  margin-top:20px;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* FIREWORKS */
+.firework{
+  position:fixed;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:gold;
+  animation:explode 1.2s ease-out forwards;
+}
+
+@keyframes explode{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+In a sky full of stars...  
+I found my forever in you.
+</div>
+
+<audio id="music" loop>
+<source src="butterfly.mp3" type="audio/mpeg">
+</audio>
+
+<div class="layer" id="starsBack"></div>
+<div class="layer" id="starsFront"></div>
+
+<section class="section">
+<h1>My Precious Enewa 💖</h1>
+<div id="typed"></div>
+
+<div class="gallery">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+<img src="photo6.jpg">
+</div>
+
+<button onclick="propose()">Yes… I choose us ❤️</button>
+
+<div id="proposal">
+<div id="ring">💍</div>
+<div id="finalText">
+Will you be my Valentine…  
+and my forever?
+</div>
+</div>
+
+</section>
+
+<script>
+
+/* TYPEWRITER */
+const message = `
+You are the gentlest soul I have ever known.
+Your presence feels like home.
+Your love feels like peace.
+
+If I could relive my life,
+I would still choose you —
+in every lifetime,
+in every universe,
+in every version of me.
+`;
+
+let i=0;
+function type(){
+  if(i<message.length){
+    document.getElementById("typed").innerHTML+=message.charAt(i);
+    i++;
+    setTimeout(type,35);
+  }
+}
+setTimeout(type,4000);
+
+/* PARALLAX STARS */
+function createStars(layer,count){
+  for(let i=0;i<count;i++){
+    let star=document.createElement("div");
+    star.className="star";
+    star.style.width=Math.random()*3+"px";
+    star.style.height=star.style.width;
+    star.style.top=Math.random()*100+"%";
+    star.style.left=Math.random()*100+"%";
+    layer.appendChild(star);
+  }
+}
+createStars(document.getElementById("starsBack"),80);
+createStars(document.getElementById("starsFront"),40);
+
+/* PROPOSAL */
+const music=document.getElementById("music");
+
+function propose(){
+  music.play().catch(()=>{});
+  document.getElementById("proposal").style.display="block";
+  fireworks();
+}
+
+/* FIREWORKS */
+function fireworks(){
+  for(let i=0;i<60;i++){
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.left="50%";
+    f.style.top="50%";
+    f.style.setProperty("--x",(Math.random()*400-200)+"px");
+    f.style.setProperty("--y",(Math.random()*400-200)+"px");
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1200);
+  }
+}
+
+</script>
+
+</body>
+</html>
